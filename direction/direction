@@ -1,0 +1,19 @@
+notes-api/
+│
+├── config/
+│
+├── controllers/
+│
+├── middleware/
+│
+├── models/
+│
+├── routes/
+│
+├── utils/
+│
+├── .env
+├── .gitignore
+├── app.js
+├── server.js
+├── package.json
