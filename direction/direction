@@ -17,3 +17,17 @@ notes-api/
 ├── app.js
 ├── server.js
 ├── package.json
+
+
+
+Start Node
+      │
+Load .env
+      │
+Import connectDB
+      │
+Call connectDB()
+      │
+Connect to MongoDB
+      │
+Start Express Server
