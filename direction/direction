@@ -31,3 +31,59 @@ Call connectDB()
 Connect to MongoDB
       │
 Start Express Server
+
+
+
+Postman
+
+↓
+
+localhost:3000
+
+↓
+
+Express receives request
+
+↓
+
+Controller executes
+
+↓
+
+Note.create()
+
+↓
+
+Mongoose
+
+↓
+
+MongoDB Driver
+
+↓
+
+localhost:27017
+
+↓
+
+MongoDB stores document
+
+↓
+
+MongoDB replies
+
+↓
+
+Mongoose replies
+
+↓
+
+Controller replies
+
+↓
+
+Express sends response
+
+↓
+
+Postman receives JSON
