@@ -18,6 +18,8 @@ router.get("/:id", getNoteById);
 
 router.put("/:id", updateNote);
 
-router.patch("/:id", updateNote);
+// router.patch("/:id", updateNote);
+
+router.delete("/:id", deleteNote);
 
 module.exports = router;
