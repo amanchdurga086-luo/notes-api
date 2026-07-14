@@ -1,27 +1,23 @@
 const Note = require("../models/Note");
+const asyncHandler = require("../utils/asyncHandler");
 
 // Create Note
-const createNote = async (req, res) => {
-  try {
+const createNote = asyncHandler(async (req, res) => {
+
     const { title, content } = req.body;
 
     const note = await Note.create({
-      title,
-      content,
+        title,
+        content,
     });
 
     res.status(201).json({
-      success: true,
-      message: "Note created successfully",
-      data: note,
+        success: true,
+        message: "Note created successfully",
+        data: note,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
+
+});
 
 // Get All Notes
 const getAllNotes = async (req, res) => {
