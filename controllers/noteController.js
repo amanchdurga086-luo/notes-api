@@ -20,131 +20,86 @@ const createNote = asyncHandler(async (req, res) => {
 });
 
 // Get All Notes
-const getAllNotes = async (req, res) => {
-  try {
+const getAllNotes = asyncHandler(async (req, res) => {
     const notes = await Note.find().sort({
-      createdAt: -1,
+        createdAt: -1,
     });
 
     res.status(200).json({
-      success: true,
-      count: notes.length,
-      data: notes,
+        success: true,
+        count: notes.length,
+        data: notes,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
+});
 
 
 // Get Note By ID
-const getNoteById = async (req, res) => {
+const getNoteById = asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
-    try {
+    const note = await Note.findById(id);
 
-        const { id } = req.params;
-
-        const note = await Note.findById(id);
-
-        if (!note) {
-            return res.status(404).json({
-                success: false,
-                message: "Note not found",
-            });
-        }
-
-        res.status(200).json({
-            success: true,
-            data: note,
-        });
-
-    } catch (error) {
-
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-
+    if (!note) {
+        const error = new Error("Note not found");
+        error.statusCode = 404;
+        throw error;
     }
 
-};
+    res.status(200).json({
+        success: true,
+        data: note,
+    });
+});
 
 // Update Note
-const updateNote = async (req, res) => {
-    try {
-        const { id } = req.params;
+const updateNote = asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
-        const { title, content } = req.body;
+    const { title, content } = req.body;
 
-        const updatedNote = await Note.findByIdAndUpdate(
-            id,
-            // update field
-            {
-                title,
-                content,
-            },
-            {
-                new: true,
-                runValidators: true,
-            }
-        );
-
-        if (!updatedNote) {
-            return res.status(404).json({
-                success: false,
-                message: "Note not found",
-            });
+    const updatedNote = await Note.findByIdAndUpdate(
+        id,
+        {
+            title,
+            content,
+        },
+        {
+            new: true,
+            runValidators: true,
         }
+    );
 
-        res.status(200).json({
-            success: true,
-            message: "Note updated successfully",
-            data: updatedNote,
-        });
-
-    } catch (error) {
-
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-
+    if (!updatedNote) {
+        const error = new Error("Note not found");
+        error.statusCode = 404;
+        throw error;
     }
-};
+
+    res.status(200).json({
+        success: true,
+        message: "Note updated successfully",
+        data: updatedNote,
+    });
+});
 
 
 // Delete Note
-const deleteNote = async (req, res) => {
-    try {
+const deleteNote = asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
-        const { id } = req.params;
+    const deletedNote = await Note.findByIdAndDelete(id);
 
-        const deletedNote = await Note.findByIdAndDelete(id);
-
-        if (!deletedNote) {
-            return res.status(404).json({
-                success: false,
-                message: "Note not found",
-            });
-        }
-
-        res.status(200).json({
-            success: true,
-            message: "Note deleted successfully",
-        });
-
-    } catch (error) {
-
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-
+    if (!deletedNote) {
+        const error = new Error("Note not found");
+        error.statusCode = 404;
+        throw error;
     }
-};
+
+    res.status(200).json({
+        success: true,
+        message: "Note deleted successfully",
+    });
+});
 
 
 module.exports = {
