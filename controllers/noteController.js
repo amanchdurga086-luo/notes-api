@@ -1,5 +1,6 @@
 const Note = require("../models/Note");
 const asyncHandler = require("../utils/asyncHandler");
+const ApiError = require("../utils/ApiError");
 
 // Create Note
 const createNote = asyncHandler(async (req, res) => {
@@ -40,9 +41,7 @@ const getNoteById = asyncHandler(async (req, res) => {
     const note = await Note.findById(id);
 
     if (!note) {
-        const error = new Error("Note not found");
-        error.statusCode = 404;
-        throw error;
+       throw new ApiError(404, "Note not found");
     }
 
     res.status(200).json({
@@ -70,9 +69,7 @@ const updateNote = asyncHandler(async (req, res) => {
     );
 
     if (!updatedNote) {
-        const error = new Error("Note not found");
-        error.statusCode = 404;
-        throw error;
+        throw new ApiError(404, "Note not found");
     }
 
     res.status(200).json({
@@ -90,9 +87,7 @@ const deleteNote = asyncHandler(async (req, res) => {
     const deletedNote = await Note.findByIdAndDelete(id);
 
     if (!deletedNote) {
-        const error = new Error("Note not found");
-        error.statusCode = 404;
-        throw error;
+       throw new ApiError(404, "Note not found");
     }
 
     res.status(200).json({
