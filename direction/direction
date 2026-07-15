@@ -162,3 +162,11 @@ meta → Extra information (count, pagination, etc.).
         }
     ]
 }
+
+
+
+A controller should only:
+
+Receive the request.
+Call the appropriate service.
+Return the response.

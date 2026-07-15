@@ -3,15 +3,13 @@ const asyncHandler = require("../utils/asyncHandler");
 const ApiError = require("../utils/ApiError");
 const validateObjectId = require("../utils/validateObjectId");
 const ApiResponse = require("../utils/ApiResponse");
+const noteService = require("../services/noteService");
 
 // Create Note
 const createNote = asyncHandler(async (req, res) => {
   const { title, content } = req.body;
 
-  const note = await Note.create({
-    title,
-    content,
-  });
+  const note = await noteService.createNote(title, content);
 
   res.status(201).json(new ApiResponse("Note created successfully", note));
 });
