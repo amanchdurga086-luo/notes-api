@@ -284,3 +284,16 @@ Per IP
 Can CORS stop someone using Postman?
 
 Answer: No. CORS is enforced by browsers, not by Postman or server-to-server requests.
+
+
+Morgan is a middleware that automatically logs every HTTP request.
+
+app.use(morgan("combined"));
+Contains:
+IP Address
+Date
+Method
+URL
+Protocol
+Status
+Response Size

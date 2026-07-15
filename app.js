@@ -4,6 +4,7 @@ const errorHandler = require("./middleware/errorMiddleware");
 const helmet = require("helmet");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use(
     })
 );
 
+app.use(morgan("dev"));
+
 // create limit
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -27,7 +30,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Routes
-app.use("/notes", noteRoutes);
+app.use("/note", noteRoutes);
 
 // Test Route
 // app.get("/", (req, res) => {
