@@ -14,11 +14,11 @@ const createNote = asyncHandler(async (req, res) => {
   res.status(201).json(new ApiResponse("Note created successfully", note));
 });
 
+
 // Get All Notes
 const getAllNotes = asyncHandler(async (req, res) => {
-  const notes = await Note.find().sort({
-    createdAt: -1,
-  });
+
+  const notes = await noteService.getAllNotes();
 
   res.status(200).json(
     new ApiResponse("Notes fetched successfully", notes, {
@@ -33,7 +33,7 @@ const getNoteById = asyncHandler(async (req, res) => {
 
   validateObjectId(id);
 
-  const note = await Note.findById(id);
+const note = await noteService.getNoteById(id);
 
   if (!note) {
     throw new ApiError(404, "Note not found");
@@ -50,17 +50,12 @@ const updateNote = asyncHandler(async (req, res) => {
 
   const { title, content } = req.body;
 
-  const updatedNote = await Note.findByIdAndUpdate(
-    id,
-    {
-      title,
-      content,
-    },
-    {
-      new: true,
-      runValidators: true,
-    },
-  );
+  const updatedNote =
+    await noteService.updateNote(
+        id,
+        title,
+        content
+    );
 
   if (!updatedNote) {
     throw new ApiError(404, "Note not found");
@@ -77,8 +72,9 @@ const deleteNote = asyncHandler(async (req, res) => {
 
   validateObjectId(id);
 
-  const deletedNote = await Note.findByIdAndDelete(id);
-
+const deletedNote =
+    await noteService.deleteNote(id);
+    
   if (!deletedNote) {
     throw new ApiError(404, "Note not found");
   }

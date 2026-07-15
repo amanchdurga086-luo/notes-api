@@ -170,3 +170,66 @@ A controller should only:
 Receive the request.
 Call the appropriate service.
 Return the response.
+
+
+
+Services should never know about Express.
+
+They should only return data or throw errors.
+
+The controller decides how to turn that into an HTTP response.
+
+
+
+
+✅ Node.js
+✅ Express
+✅ MongoDB
+✅ Mongoose
+✅ MVC Architecture
+✅ CRUD APIs
+✅ Environment Variables
+✅ Error Middleware
+✅ asyncHandler
+✅ ApiError
+✅ ApiResponse
+✅ ObjectId Validation
+✅ Request Validation
+✅ Service Layer
+
+
+Lesson 19 → Security (Helmet, CORS, Rate Limiting)
+Lesson 20 → Logging (Morgan)
+Lesson 21 → Deployment (Render/Railway)
+Lesson 22 → Environment Configuration
+Lesson 23 → API Documentation (Swagger/OpenAPI)
+Lesson 24 → Authentication (JWT)
+Lesson 25 → Authorization
+Lesson 26 → Refresh Tokens
+Lesson 27 → Password Hashing (bcrypt)
+Lesson 28 → User Model
+Lesson 29 → Protected Routes
+Lesson 30 → Project Deployment
+
+
+Client
+
+↓
+
+Helmet
+
+↓
+
+CORS
+
+↓
+
+Rate Limiter
+
+↓
+
+Routes
+
+↓
+
+Controllers
