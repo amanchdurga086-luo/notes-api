@@ -87,3 +87,17 @@ Express sends response
 ↓
 
 Postman receives JSON
+
+
+
+
+Middleware sits between:
+Request
+
+↓
+
+Middleware
+
+↓
+
+Controller
