@@ -216,7 +216,7 @@ Client
 
 ↓
 
-Helmet
+Helmet //Helmet automatically adds secure HTTP headers.
 
 ↓
 
@@ -233,3 +233,54 @@ Routes
 ↓
 
 Controllers
+
+
+These headers help protect against attacks like:
+
+Clickjacking
+MIME sniffing
+Some XSS scenarios
+
+
+
+
+What is CORS?
+
+Imagine your React app runs on:
+
+http://localhost:5173
+
+Your backend runs on:
+
+http://localhost:3000
+
+The browser says:
+
+Different origin!
+
+Without permission:
+
+Blocked
+
+That's CORS.
+
+
+
+15 Minutes
+
+↓
+
+Maximum
+
+↓
+
+100 Requests
+
+↓
+
+Per IP
+
+
+Can CORS stop someone using Postman?
+
+Answer: No. CORS is enforced by browsers, not by Postman or server-to-server requests.
