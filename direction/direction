@@ -200,7 +200,7 @@ The controller decides how to turn that into an HTTP response.
 
 Lesson 19 → Security (Helmet, CORS, Rate Limiting)
 Lesson 20 → Logging (Morgan)
-Lesson 21 → Deployment (Render/Railway)
+Lesson 21 → Deployment (Render/Railway)----------
 Lesson 22 → Environment Configuration
 Lesson 23 → API Documentation (Swagger/OpenAPI)
 Lesson 24 → Authentication (JWT)
@@ -297,3 +297,9 @@ URL
 Protocol
 Status
 Response Size
+
+
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+},
